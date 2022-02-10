@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex justify-center">
+    <form class="mx-auto bg-purple-700 items-center">
+        <label class="w-5 text-left" for="name">Name</label>
+        <input class="border-2 rounded-md" type="text" name="name" id="name"><br>
+        <label class="w-8 text-left" for="age">Age</label><br>
+        <input class="border-2 rounded-md"  type="number" name="age" id="age"><br>
+        <label class="w-5 text-left" for="SecretIdentity">SecretIdentity</label>
+        <input class="border-2 rounded-md" type="text" name="SecretIdentity" id="SecretIdentity"><br>
+        <label class="w-5 text-left" for="power">power</label>
+        <input class="border-2 rounded-md" type="text" name="power" id="power" placeholder="seprateby comma(,)"><br>
+        <a class="bg-blue-600 text-white px-3 rounded cursor-pointer" onclick={addHero()} rel="noopener noreferrer">Add</a>
+    </form>
+    <table class="w-full mx-10 my-10 font-mono table-auto">
+        <thead class="bg-purple-300">
+            <td>Name</td>
+            <td>Age</td>
+            <td>SecretIdentity</td>
+            <td>Power</td>   
+    </thead>
+        <tbody id="heros">
+        </tbody>
+    </table>
+    <script src="./script.js"></script>
+</body>
+</html>
