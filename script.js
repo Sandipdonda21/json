@@ -1,97 +1,127 @@
-let apidata;
 
-const getdata =async () =>{ await  fetch('https://api.covid19api.com/summary')
-  .then(Response => Response.json()).then(data => {apidata= data
-  })
-console.log(apidata)
-}
-getdata();
-let json = [
+let json = [{
+  "destination_addresses": [
+    "Washington, DC, USA",
+    "Philadelphia, PA, USA",
+    "Santa Barbara, CA, USA",
+    "Miami, FL, USA",
+    "Austin, TX, USA",
+    "Napa County, CA, USA"
+  ],
+  "origin_addresses": ["New York, NY, USA"],
+  "rows": [
     {
-      "name": "Thor",
-      "age": 49,
-      "secretIdentity": "Dan Jukes",
-      "powers": [
-        "Radiation resistance",
-        "Turning tiny",
-        "Radiation blast"
-      ]
-    },
-    {
-      "name": "Hulk",
-      "age": 39,
-      "secretIdentity": "Jane Wilson",
-      "powers": [
-        "Miltdon tonne punch",
-        "Damage resistance",
-        "Superhuman reflexes"
-      ]
-    },
-    {
-      "name": "Ironman",
-      "age": 50,
-      "secretIdentity": "Tony stark",
-      "powers": [
-        "Miltdon tonne punch",
-        "Damage resistance",
-        "Superhuman reflexes"
+      "elements": [
+        {
+          "distance": {
+            "text": "227 mi",
+            "value": 365468
+          },
+          "duration": {
+            "text": "3 hours 54 mins",
+            "value": 14064
+          },
+          "status": "OK"
+        },
+        {
+          "distance": {
+            "text": "94.6 mi",
+            "value": 152193
+          },
+          "duration": {
+            "text": "1 hour 44 mins",
+            "value": 6227
+          },
+          "status": "OK"
+        },
+        {
+          "distance": {
+            "text": "2,878 mi",
+            "value": 4632197
+          },
+          "duration": {
+            "text": "1 day 18 hours",
+            "value": 151772
+          },
+          "status": "OK"
+        },
+        {
+          "distance": {
+            "text": "1,286 mi",
+            "value": 2069031
+          },
+          "duration": {
+            "text": "18 hours 43 mins",
+            "value": 67405
+          },
+          "status": "OK"
+        },
+        {
+          "distance": {
+            "text": "1,742 mi",
+            "value": 2802972
+          },
+          "duration": {
+            "text": "1 day 2 hours",
+            "value": 93070
+          },
+          "status": "OK"
+        },
+        {
+          "distance": {
+            "text": "2,871 mi",
+            "value": 4620514
+          },
+          "duration": {
+            "text": "1 day 18 hours",
+            "value": 152913
+          },
+          "status": "OK"
+        }
       ]
     }
-  ]
+  ],
+  "status": "OK"
+}
+]
 
- const visi = () =>{ 
+ const visi = () =>{
+//fot the list formet
+
+  let add = "";
+  for(let i = 0 ; i<json[0]['destination_addresses'].length ; i++){
+     add += `
+                 <ul>${json[0]['destination_addresses'][i]}
+                   <li>Distance : ${json[0]['rows'][0]['elements'][i]['distance']['text']}</li>
+                   <li>Duration :${json[0]['rows'][0]['elements'][i]['duration']['text']}</li>
+                   </ul>`;                 
+   }
+   const hh = document.getElementById("list_formet");
+   hh.innerHTML = add;
+
+   //fot the table formet
    let added = "";
- json.map((e)=>{
+ for(let i = 0 ; i<json[0]['destination_addresses'].length ; i++){
     added += `
                 <tr>
-                  <td>${e.name}</td>
-                  <td>${e.age}</td>
-                  <td>${e.secretIdentity}</td>
-                  <td>${e.powers}</td>
-                  <td><button name=${e.name} onclick={delethero(this.name)}>&#9747</button></td>
-                  </tr>`
-  })
+                  <td>${i+1}</td>
+                  <td>${json[0]['destination_addresses'][i]}</td>
+                  <td>${json[0]['rows'][0]['elements'][i]['distance']['text']}</td>
+                  <td>${json[0]['rows'][0]['elements'][i]['duration']['text']}</td>
+                  </tr>`;                 
+  }
   const gg = document.getElementById("heros");
   gg.innerHTML = added;
-  console.log(added);
 }
-
   visi();
-
-  const clearInput =()=>{
-    document.getElementById('name').value = "";
-    document.getElementById('age').value = "";
-     document.getElementById('SecretIdentity').value ="";
-     document.getElementById('power').value ="";
-  }
-
-  const addHero=()=>{
-    let name  = document.getElementById('name').value;
-    let age  = document.getElementById('age').value;
-    let SecretIdentity  = document.getElementById('SecretIdentity').value;
-    let power  = document.getElementById('power').value.split(',');
-    json = [...json , {"name":name, "age": age,
-    "secretIdentity": SecretIdentity,
-    "powers": power}]
-    console.log(json)
-    let added = ""
-       added = `
-                   <tr>
-                     <td>${name}</td>
-                     <td>${age}</td>
-                     <td>${SecretIdentity}</td>
-                     <td>${power}</td>
-                     <td><button  name=${name} onclick={delethero(this.name)}>&#9747</button></td>
-                     </tr>
-                     `
-     
-     document.getElementById('heros').innerHTML += added;
-   clearInput();
-     
-  }
-
- const delethero = (id) =>{
-  json = json.filter(e => e.name!=id);
-  console.log(json);
-  visi();
- }
+console.log(json[0]['rows'][0]['elements'])
+  $('#table1').DataTable({
+  
+  columns: [
+      { data: 'text' },
+      { data: 'text' },
+      { data: 'text' },
+      { data: 'text' }
+  ],
+"pageLength": 3
+});

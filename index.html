@@ -7,28 +7,31 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex justify-center">
-    <form class="mx-auto bg-purple-700 items-center">
-        <label class="w-5 text-left" for="name">Name</label>
-        <input class="border-2 rounded-md" type="text" name="name" id="name"><br>
-        <label class="w-8 text-left" for="age">Age</label><br>
-        <input class="border-2 rounded-md"  type="number" name="age" id="age"><br>
-        <label class="w-5 text-left" for="SecretIdentity">SecretIdentity</label>
-        <input class="border-2 rounded-md" type="text" name="SecretIdentity" id="SecretIdentity"><br>
-        <label class="w-5 text-left" for="power">power</label>
-        <input class="border-2 rounded-md" type="text" name="power" id="power" placeholder="seprateby comma(,)"><br>
-        <a class="bg-blue-600 text-white px-3 rounded cursor-pointer" onclick={addHero()} rel="noopener noreferrer">Add</a>
-    </form>
+<body class="">
+    <div id = 'list_formet' class="flex w-full justify-between">     
+    </div>
     <table class="w-full mx-10 my-10 font-mono table-auto">
         <thead class="bg-purple-300">
-            <td>Name</td>
-            <td>Age</td>
-            <td>SecretIdentity</td>
-            <td>Power</td>   
+            <td>Sr.No</td>
+            <td>Address</td>
+            <td>Distance</td>
+            <td>Duration</td>   
     </thead>
         <tbody id="heros">
         </tbody>
     </table>
+    <table id="table1">
+        <thead>
+            <tr>
+                <th>sr.no</th>
+                <th>Address</th>
+                <th>Distance</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
